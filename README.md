@@ -83,9 +83,7 @@ En la lista simple, borrar un nodo intermedio se resuelve con un solo enlace: el
 
 *2. ¿Qué error cometieron (o evitaron) por no considerar el caso de lista vacía o de un solo nodo?*
 
-[Completen con su experiencia real. Ejemplo de estructura: qué error les marcó el compilador o el programa, en qué método ocurrió y cómo lo corrigieron. Si no tuvieron ninguno, expliquen qué caso evitaron al pensarlo antes de programar.]
-
-Lo que sí podemos explicar del código es qué habría pasado. En eliminarSiguienteDe de la lista circular, si no se revisara el caso de un solo nodo, el nodo se apuntaría a sí mismo y la lista nunca quedaría vacía: cabeza y cola seguirían señalando a un nodo que se supone eliminado. En insertarFinal de la lista simple, olvidar la lista vacía provocaría un NullPointerException al intentar leer cabeza.getSiguiente(). Por eso cada método empieza revisando esos casos.
+En el Reto 1 cometimos un error en insertarFinal: si la lista estaba vacía, no asignábamos cabeza = nuevo, así que la lista nunca se llenaba y mostrar() solo imprimía null. Lo corregimos asignando el nodo nuevo como cabeza. El caso de un solo nodo lo evitamos en eliminar: al hacer cabeza = cabeza.siguiente, la lista queda en null sin lanzar NullPointerException, siempre que se valide primero if (cabeza == null).
 
 *3. ¿Qué pasaría si en la lista circular se recorre con while (actual != null)?*
 
@@ -97,7 +95,7 @@ Una lista simple, cuando solo hace falta recorrer en un sentido y se quiere gast
 
 *5. ¿Qué fue lo más difícil y cómo lo resolvieron como bina?*
 
-[Completen con su experiencia real: qué reto o TODO les costó más, cómo lo resolvieron (dibujar los nodos en papel, probar casos en consola, dividir los retos entre ambos) y cómo se repartieron el trabajo.]
+Lo más difícil fue el Reto 3 (lista circular), en eliminarSiguienteDe, porque se juntan varios casos: lista vacía, un solo nodo, eliminado igual a la cabeza o a la cola. Al inicio usábamos while (actual != null) y el programa se colgaba en un ciclo infinito. Lo resolvimos dibujando los nodos en papel y cambiando el recorrido a do { ... } while (actual != cabeza). Nos repartimos: Oscar hizo los Retos 1 y 2, Jesús el Reto 3, y luego cada uno revisó el código del otro.
 
 ## Cómo compilar y ejecutar
 
